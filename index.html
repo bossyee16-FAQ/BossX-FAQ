@@ -1572,7 +1572,7 @@
                             <p class="text-gray-400">Fitur Peer to Peer akan segera hadir...</p>
                         </div>
                     </div>
-                    <!-- FAQ Page (Revised) -->
+                    <!-- FAQ Page (Revised with 3 Cards) -->
                     <div id="faq-page" class="page-content">
                         <div class="p-6">
                             <div class="bg-gradient-to-r from-gray-900 via-black to-gray-900 border border-amber-500/20 rounded-xl p-6 mb-6">
@@ -1586,75 +1586,77 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- FAQ Accordion -->
-                            <div class="space-y-4">
-                                <!-- FAQ Item 1: Apa itu BossX? -->
-                                <div class="stat-card p-4 cursor-pointer" onclick="toggleFAQ(this)">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-lg font-semibold text-amber-400">Apa itu BossX?</h3>
+                            <!-- 3 Main FAQ Cards -->
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <!-- Card 1: Apa itu BossX -->
+                                <div class="stat-card p-6 cursor-pointer" onclick="toggleFAQCard(this)">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="text-xl font-bold text-amber-400">Apa itu BossX?</h3>
                                         <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform"></i>
                                     </div>
-                                    <div class="faq-content mt-4 text-gray-300 hidden">
-                                        <p>BossX adalah platform crypto exchange yang aman dan user-friendly, dirancang untuk trading cryptocurrency dengan fokus pada sistem validator masternode. Platform ini mendukung deposit/withdrawal USDT dan BOSSX (token native), serta fitur seperti P2P, chat room, dan market internal. BossX menawarkan pengalaman premium dengan tema gelap modern, animasi halus, dan keamanan tinggi (simulasi dalam demo ini).</p>
+                                    <div class="faq-card-content hidden space-y-4">
+                                        <!-- Sub-FAQ Accordion Inside Card -->
+                                        <div class="bg-gray-800 p-4 rounded-xl">
+                                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubFAQ(this)">
+                                                <p class="text-sm text-white">Pertanyaan 1: Deskripsi singkat BossX?</p>
+                                                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 transition-transform"></i>
+                                            </div>
+                                            <div class="sub-faq-content mt-2 text-gray-300 hidden">
+                                                <p>Jawaban: BossX adalah platform crypto exchange...</p> <!-- Isi nanti -->
+                                            </div>
+                                        </div>
+                                        <!-- Tambah sub-FAQ lain -->
+                                        <div class="bg-gray-800 p-4 rounded-xl">
+                                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubFAQ(this)">
+                                                <p class="text-sm text-white">Pertanyaan 2: Fitur utama?</p>
+                                                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 transition-transform"></i>
+                                            </div>
+                                            <div class="sub-faq-content mt-2 text-gray-300 hidden">
+                                                <p>Jawaban: Fitur termasuk trading, masternode...</p> <!-- Isi nanti -->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- FAQ Item 2: Bagaimana cara kerja market internal? -->
-                                <div class="stat-card p-4 cursor-pointer" onclick="toggleFAQ(this)">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-lg font-semibold text-amber-400">Bagaimana cara kerja market internal di BossX?</h3>
+                                <!-- Card 2: Apa itu Masternode -->
+                                <div class="stat-card p-6 cursor-pointer" onclick="toggleFAQCard(this)">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="text-xl font-bold text-amber-400">Apa itu Masternode?</h3>
                                         <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform"></i>
                                     </div>
-                                    <div class="faq-content mt-4 text-gray-300 hidden">
-                                        <p>Market internal BossX adalah fitur exchange built-in untuk trading crypto dengan tampilan mewah seperti Binance. Anda bisa memilih pair seperti BossX/USDT, BTC/USDT, ETH/USDT, atau SOL/USDT. Fitur termasuk:</p>
-                                        <ul class="list-disc ml-6 space-y-2">
-                                            <li>Chart real-time (via TradingView atau custom flat chart).</li>
-                                            <li>Order book dengan buy/sell orders (hijau/merah).</li>
-                                            <li>Market data: Harga saat ini, perubahan 24h, volume, high/low.</li>
-                                            <li>Trading form: Market/Limit order, buy/sell dengan amount dan price.</li>
-                                            <li>History trading: Tabel dengan date, pair, type, price, amount, total, status.</li>
-                                        </ul>
-                                        <p>Semua transaksi adalah simulasi; gunakan dengan bijak dan periksa balance USDT/BossX Anda.</p>
+                                    <div class="faq-card-content hidden space-y-4">
+                                        <!-- Sub-FAQ Accordion Inside Card -->
+                                        <div class="bg-gray-800 p-4 rounded-xl">
+                                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubFAQ(this)">
+                                                <p class="text-sm text-white">Pertanyaan 1: Cara aktivasi?</p>
+                                                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 transition-transform"></i>
+                                            </div>
+                                            <div class="sub-faq-content mt-2 text-gray-300 hidden">
+                                                <p>Jawaban: Minimal 10 BossX...</p> <!-- Isi nanti -->
+                                            </div>
+                                        </div>
+                                        <!-- Tambah sub-FAQ lain -->
                                     </div>
                                 </div>
-                                <!-- FAQ Item 3: Apa itu program masternode validator? -->
-                                <div class="stat-card p-4 cursor-pointer" onclick="toggleFAQ(this)">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-lg font-semibold text-amber-400">Apa itu program masternode validator di BossX?</h3>
+                                <!-- Card 3: Apa itu Internal Market -->
+                                <div class="stat-card p-6 cursor-pointer" onclick="toggleFAQCard(this)">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="text-xl font-bold text-amber-400">Apa itu Internal Market?</h3>
                                         <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform"></i>
                                     </div>
-                                    <div class="faq-content mt-4 text-gray-300 hidden">
-                                        <p>Program masternode validator adalah sistem utama BossX untuk menghasilkan reward melalui validasi jaringan. Ini seperti staking tapi dengan reward per detik. Fitur kunci:</p>
-                                        <ul class="list-disc ml-6 space-y-2">
-                                            <li><strong>Aktivasi</strong>: Minimal 10 BossX dari balance Anda. Setelah aktif, node siap running.</li>
-                                            <li><strong>Validasi Running</strong>: Tekan power ON untuk mulai. Reward dihitung per detik (rate: ~0.00000003858 BossX per BossX staked). Auto-stop setiap jam 06:00 pagi.</li>
-                                            <li><strong>Reward</strong>: Akumulasi sementara di "Validasi Running", auto-claim ke "Reward Validasi" setiap 60 detik. Minimal convert 1 BossX ke USDT (rate 1:1).</li>
-                                            <li><strong>Masa Berlaku</strong>: 40.000.000 detik (~463 hari). Habis? Aktivasi ulang diperlukan.</li>
-                                            <li><strong>Log Engine</strong>: Monitor aktivitas seperti GPU hash rate, temp, power consumption (simulasi random).</li>
-                                        </ul>
-                                        <p>Program ini aman dan otomatis; pastikan stake cukup dan jangan lupa convert reward ke USDT untuk withdrawal.</p>
+                                    <div class="faq-card-content hidden space-y-4">
+                                        <!-- Sub-FAQ Accordion Inside Card -->
+                                        <div class="bg-gray-800 p-4 rounded-xl">
+                                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleSubFAQ(this)">
+                                                <p class="text-sm text-white">Pertanyaan 1: Pairs tersedia?</p>
+                                                <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 transition-transform"></i>
+                                            </div>
+                                            <div class="sub-faq-content mt-2 text-gray-300 hidden">
+                                                <p>Jawaban: BossX/USDT, BTC/USDT...</p> <!-- Isi nanti -->
+                                            </div>
+                                        </div>
+                                        <!-- Tambah sub-FAQ lain -->
                                     </div>
                                 </div>
-                                <!-- FAQ Item 4: Bagaimana cara aktivasi masternode? -->
-                                <div class="stat-card p-4 cursor-pointer" onclick="toggleFAQ(this)">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-lg font-semibold text-amber-400">Bagaimana cara mengaktifkan masternode?</h3>
-                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform"></i>
-                                    </div>
-                                    <div class="faq-content mt-4 text-gray-300 hidden">
-                                        <p>Pergi ke Dashboard > Card "Aktivasi Node". Masukkan jumlah BossX (min. 10), klik "Aktivasi Node". Balance BossX akan dipotong sebagai stake. Setelah aktif, tekan power ON di card "Validasi Running" untuk mulai menghasilkan reward.</p>
-                                    </div>
-                                </div>
-                                <!-- FAQ Item 5: Apa saja pairs di market internal? -->
-                                <div class="stat-card p-4 cursor-pointer" onclick="toggleFAQ(this)">
-                                    <div class="flex items-center justify-between">
-                                        <h3 class="text-lg font-semibold text-amber-400">Apa saja pairs trading di market internal?</h3>
-                                        <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transition-transform"></i>
-                                    </div>
-                                    <div class="faq-content mt-4 text-gray-300 hidden">
-                                        <p>Pairs utama: BossX/USDT, BTC/USDT, ETH/USDT, SOL/USDT. Pilih pair, lihat chart, order book, dan lakukan buy/sell. Semua berdasarkan data simulasi; gunakan untuk latihan trading.</p>
-                                    </div>
-                                </div>
-                                <!-- Tambahkan FAQ lain jika diperlukan -->
                             </div>
                         </div>
                     </div>
@@ -2098,6 +2100,14 @@
             updateBalanceDisplays();
             showSuccessMessage(`Node aktif! Stake: ${inputAmount} BossX. Silakan tekan Power ON untuk mulai validasi.`);
         }
+        // Pindah addRandomLog ke scope global untuk fix bug
+        function addRandomLog() {
+            if (!isValidationRunning) return;
+            const randomIndex = Math.floor(Math.random() * logTemplates.length);
+            appendLog(logTemplates[randomIndex]);
+            // Jadwal ulang dengan delay random 1-5 detik
+            logInterval = setTimeout(addRandomLog, Math.floor(Math.random() * 4000) + 1000);
+        }
         function startValidationRunning() {
             if (!isNodeActive) {
                 showErrorMessage('Aktivasi node terlebih dahulu!');
@@ -2129,15 +2139,8 @@
             setTimeout(() => appendLog('[STATUS] Network sync: 100%'), Math.random() * 2000 + 5000); // 5-7 detik
             setTimeout(() => appendLog('[INFO] GPU#0: 48.3 MH/s | Temp: 68°C | Fan: 82%'), Math.random() * 2000 + 7000); // 7-9 detik
            
-            // Periodic log dengan selisih detik random (1-5 detik per log baru)
-            function addRandomLog() {
-                if (!isValidationRunning) return;
-                const randomIndex = Math.floor(Math.random() * logTemplates.length);
-                appendLog(logTemplates[randomIndex]);
-                // Jadwal ulang dengan delay random 1-5 detik
-                logInterval = setTimeout(addRandomLog, Math.floor(Math.random() * 4000) + 1000);
-            }
-            addRandomLog(); // Mulai loop
+            // Mulai loop addRandomLog
+            addRandomLog();
            
             showSuccessMessage('Validasi dimulai! Reward mengalir per detik.');
         }
@@ -2858,7 +2861,7 @@
             updateWithdrawalContent();
             lucide.createIcons();
             startMasaCountdown(); // Start masa berlaku countdown on load
-            setInterval(() => addRandomLog(), Math.floor(Math.random() * 4000) + 1000); // Start log simulation
+            setInterval(addRandomLog, Math.floor(Math.random() * 4000) + 1000); // Start log simulation (fixed call)
             setTimeout(() => {
                 showSuccessMessage('Selamat datang di BossX Crypto Exchange Platform!');
             }, 1000);
@@ -3286,9 +3289,23 @@
             ReactDOM.render(h(App), document.getElementById('chat-room-container'));
         }
 
-        // Fungsi untuk toggle FAQ accordion
-        function toggleFAQ(element) {
-            const content = element.querySelector('.faq-content');
+        // Fungsi untuk toggle FAQ card utama
+        function toggleFAQCard(element) {
+            const content = element.querySelector('.faq-card-content');
+            const icon = element.querySelector('[data-lucide="chevron-down"]');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+            lucide.createIcons();
+        }
+
+        // Fungsi untuk toggle sub-FAQ di dalam card
+        function toggleSubFAQ(element) {
+            const content = element.nextElementSibling;
             const icon = element.querySelector('[data-lucide="chevron-down"]');
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
