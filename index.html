@@ -894,6 +894,11 @@
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
                     <span class="ml-2 font-medium menu-text text-sm">Chat Room</span>
                 </a>
+                <!-- Fitur baru: Referral, ditambahkan tepat di bawah Chat Room -->
+                <a href="#" class="menu-item flex items-center px-2 py-2 mb-2 rounded-xl text-gray-400" data-page="referral">
+                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    <span class="ml-2 font-medium menu-text text-sm">Referral</span>
+                </a>
                 <!-- END MENU BARU -->
                 <a href="#" class="menu-item flex items-center px-2 py-2 mb-2 rounded-xl text-gray-400" data-page="faq">
                     <i data-lucide="help-circle" class="w-4 h-4"></i>
@@ -908,18 +913,6 @@
                     <span class="ml-2 font-medium menu-text text-sm">Logout</span>
                 </a>
             </nav>
-            <!-- Footer -->
-            <div id="sidebar-footer" class="absolute bottom-4 left-2 right-2">
-                <div class="gradient-card p-3 rounded-xl gradient-border">
-                    <div class="text-center">
-                        <div class="w-6 h-6 bg-amber-400 rounded-full mx-auto mb-1 flex items-center justify-center">
-                            <span class="text-xs font-bold text-black">BX</span>
-                        </div>
-                        <p class="text-xs text-gray-400">Premium Member</p>
-                        <p class="text-sm font-semibold text-amber-400">VIP Access</p>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- Main Content -->
         <div class="flex-1 flex flex-col min-w-0">
@@ -1565,13 +1558,120 @@
                         <div id="chat-room-container" class="w-full h-full"></div>
                     </div>
                     <!-- END HALAMAN BARU -->
-                    <!-- Other Pages -->
-                    <div id="p2p-page" class="page-content">
+                    <!-- Referral Page (Fitur baru) -->
+                    <div id="referral-page" class="page-content">
                         <div class="p-6">
-                            <h1 class="text-2xl font-bold text-amber-400 mb-4">Peer to Peer</h1>
-                            <p class="text-gray-400">Fitur Peer to Peer akan segera hadir...</p>
+                            <h1 class="text-2xl font-bold text-amber-400 mb-4">Referral</h1>
+                            <div class="stat-card p-6 mb-6">
+                                <h3 class="text-xl font-bold text-white mb-4">Kode Referral Anda</h3>
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <input id="referral-code" type="text" class="node-input flex-1" readonly value="REF-XXXXXX" />
+                                    <button onclick="copyReferralCode()" class="copy-button flex items-center px-3 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-black rounded-lg font-semibold hover:from-amber-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-105">
+                                        <i data-lucide="copy" class="mr-1 w-4 h-4"></i> Copy
+                                    </button>
+                                </div>
+                                <button onclick="generateReferralCode()" class="node-button mb-4">Generate Kode Baru</button>
+                                <p class="text-gray-400">Bagikan kode referral Anda untuk mendapatkan reward. Setiap referral sukses memberikan 10% bonus dari deposit pertama mereka.</p>
+                            </div>
+                            <div class="stat-card p-6">
+                                <h3 class="text-xl font-bold text-white mb-4">Statistik Referral</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-gray-400">Total Referral</p>
+                                        <p class="text-2xl font-bold text-white">0</p>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-400">Reward Didapat</p>
+                                        <p class="text-2xl font-bold text-white">0 BossX</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- P2P Page -->
+                    <div id="p2p-page" class="page-content exchange-bg">
+                        <div class="exchange-card p-6 mb-6">
+                            <h1 class="text-3xl font-bold text-amber-400 mb-4 flex items-center">
+                                <i data-lucide="users" class="w-8 h-8 mr-2"></i>
+                                Peer to Peer Transfer
+                            </h1>
+                            <p class="text-gray-400 mb-6">Transfer BossX ke sesama pengguna menggunakan @username. Minimal transfer 1 BossX.</p>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Transfer Form -->
+                            <div class="exchange-card p-6">
+                                <h2 class="text-xl font-bold text-white mb-4 flex items-center">
+                                    <i data-lucide="send" class="w-6 h-6 mr-2 text-amber-400"></i>
+                                    Kirim BossX
+                                </h2>
+                                <div class="space-y-4">
+                                    <div class="space-y-2">
+                                        <label class="text-sm text-gray-400">Username Penerima:</label>
+                                        <input
+                                            id="p2p-username"
+                                            type="text"
+                                            placeholder="@username"
+                                            class="node-input"
+                                        />
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="text-sm text-gray-400">Jumlah BossX:</label>
+                                        <div class="relative">
+                                            <input
+                                                id="p2p-amount"
+                                                type="number"
+                                                placeholder="0.00"
+                                                class="node-input pr-16"
+                                                step="0.000000001"
+                                                min="1"
+                                            />
+                                            <button id="p2p-max" class="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-amber-500 text-black text-xs rounded font-semibold hover:bg-amber-600 transition-colors">
+                                                MAX
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <button id="p2p-submit" class="node-button" onclick="submitP2PTransfer()">
+                                        <i data-lucide="send" class="mr-2 w-4 h-4"></i>
+                                        Kirim BossX
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- P2P Statistics -->
+                            <div class="exchange-card p-6">
+                                <h2 class="text-xl font-bold text-white mb-4 flex items-center">
+                                    <i data-lucide="bar-chart" class="w-6 h-6 mr-2 text-amber-400"></i>
+                                    Statistik P2P
+                                </h2>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="stat-card p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <p class="text-sm text-gray-400">Total Dikirim</p>
+                                            <i data-lucide="arrow-up-circle" class="w-4 h-4 text-red-400"></i>
+                                        </div>
+                                        <div id="p2p-total-sent" class="text-xl font-bold text-white">0 BossX</div>
+                                    </div>
+                                    <div class="stat-card p-4">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <p class="text-sm text-gray-400">Total Diterima</p>
+                                            <i data-lucide="arrow-down-circle" class="w-4 h-4 text-green-400"></i>
+                                        </div>
+                                        <div id="p2p-total-received" class="text-xl font-bold text-white">0 BossX</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- P2P History -->
+                        <div class="exchange-card mt-6 p-6">
+                            <h2 class="text-xl font-bold text-white mb-4 flex items-center">
+                                <i data-lucide="history" class="w-6 h-6 mr-2 text-amber-400"></i>
+                                History Transfer P2P
+                            </h2>
+                            <div id="p2p-history-content" class="overflow-x-auto">
+                                <!-- History table will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Other Pages -->
                     <div id="faq-page" class="page-content">
                         <div class="p-6">
                             <h1 class="text-2xl font-bold text-amber-400 mb-4">FAQ</h1>
@@ -1835,6 +1935,8 @@
             USDT: [],
             BOSSX: []
         };
+        // P2P variables
+        const p2pHistory = [];
         // Real-time clock
         function updateClock() {
             const now = new Date();
@@ -1890,7 +1992,9 @@
             currentPage = pageId;
             if (pageId === 'deposit') updateDepositContent();
             else if (pageId === 'withdrawal') updateWithdrawalContent();
-            else if (pageId === 'exchange') {
+            else if (pageId === 'p2p') {
+                updateP2PContent();
+            } else if (pageId === 'exchange') {
                 // Init exchange page if needed
                 initExchangePage();
             } else if (pageId === 'chat-room') {
@@ -2683,25 +2787,137 @@
             link.click();
             showSuccessMessage(`QR Code ${activeTab} berhasil didownload!`);
         }
+        // P2P Functions
+        function updateP2PContent() {
+            updateBalanceDisplays(); // Update BossX balance if needed
+            updateP2PStatistics();
+            updateP2PHistory();
+        }
+        function submitP2PTransfer() {
+            const username = document.getElementById('p2p-username').value.trim();
+            const amount = parseFloat(document.getElementById('p2p-amount').value) || 0;
+            if (!username || !username.startsWith('@')) {
+                showErrorMessage('Username harus diawali dengan @ dan tidak boleh kosong!');
+                return;
+            }
+            if (amount < 1) {
+                showErrorMessage('Minimal transfer 1 BossX!');
+                return;
+            }
+            if (amount > bossxBalance) {
+                showErrorMessage('Saldo BossX tidak mencukupi!');
+                return;
+            }
+            // Simulate transfer
+            bossxBalance -= amount;
+            // Add to history (outgoing)
+            p2pHistory.unshift({
+                id: Date.now().toString(),
+                type: 'out',
+                username: username,
+                amount: amount,
+                timestamp: new Date(),
+                status: 'completed'
+            });
+            // Reset form
+            document.getElementById('p2p-username').value = '';
+            document.getElementById('p2p-amount').value = '';
+            // Update UI
+            updateBalanceDisplays();
+            updateP2PContent();
+            showSuccessMessage(`Transfer ${amount.toFixed(9)} BossX ke ${username} berhasil!`);
+        }
+        function setMaxP2P() {
+            document.getElementById('p2p-amount').value = bossxBalance.toFixed(9);
+        }
+        function updateP2PHistory() {
+            const historyContent = document.getElementById('p2p-history-content');
+            if (p2pHistory.length === 0) {
+                historyContent.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="calendar" class="text-gray-400 w-6 h-6"></i>
+                        </div>
+                        <h4 class="text-gray-400 text-lg font-semibold mb-2">Belum ada history transfer</h4>
+                        <p class="text-gray-500">History transfer P2P Anda akan muncul di sini</p>
+                    </div>
+                `;
+            } else {
+                let tableHTML = `
+                    <table class="w-full history-table text-sm">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Tanggal</th>
+                                <th class="text-left">Tipe</th>
+                                <th class="text-left">Username</th>
+                                <th class="text-left">Jumlah</th>
+                                <th class="text-left">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                p2pHistory.forEach(transfer => {
+                    const typeText = transfer.type === 'out' ? 'Keluar' : 'Masuk';
+                    const typeColor = transfer.type === 'out' ? 'text-red-400' : 'text-green-400';
+                    const statusIcon = '<i data-lucide="check-circle" class="text-green-400 w-4 h-4"></i>';
+                    tableHTML += `
+                        <tr class="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
+                            <td class="p-3">
+                                <div class="flex items-center text-white">
+                                    <i data-lucide="clock" class="mr-2 text-gray-400 w-4 h-4"></i>
+                                    ${formatDate(transfer.timestamp)}
+                                </div>
+                            </td>
+                            <td class="p-3 ${typeColor} font-semibold">${typeText}</td>
+                            <td class="p-3 text-white">${transfer.username}</td>
+                            <td class="p-3 ${typeColor}">${formatAmount(transfer.amount)} BossX</td>
+                            <td class="p-3 flex items-center text-green-400">
+                                ${statusIcon}
+                                <span class="ml-2">Selesai</span>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tableHTML += `
+                        </tbody>
+                    </table>
+                `;
+                historyContent.innerHTML = tableHTML;
+            }
+            lucide.createIcons();
+        }
+        function updateP2PStatistics() {
+            const totalSent = p2pHistory.filter(t => t.type === 'out').reduce((sum, t) => sum + t.amount, 0);
+            const totalReceived = p2pHistory.filter(t => t.type === 'in').reduce((sum, t) => sum + t.amount, 0);
+            document.getElementById('p2p-total-sent').textContent = formatAmount(totalSent) + ' BossX';
+            document.getElementById('p2p-total-received').textContent = formatAmount(totalReceived) + ' BossX';
+        }
+        // Referral Functions (Fitur baru)
+        function generateReferralCode() {
+            const code = 'REF-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+            document.getElementById('referral-code').value = code;
+            showSuccessMessage('Kode referral baru berhasil digenerate!');
+        }
+        function copyReferralCode() {
+            const code = document.getElementById('referral-code').value;
+            copyToClipboard(code);
+        }
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
             // Sidebar toggle
             document.getElementById('toggle-sidebar').addEventListener('click', function() {
                 const sidebar = document.getElementById('sidebar');
                 const logoText = document.getElementById('logo-text');
-                const sidebarFooter = document.getElementById('sidebar-footer');
                 const menuTexts = document.querySelectorAll('.menu-text');
                 const toggleIcon = this.querySelector('[data-lucide]');
                 if (sidebar.classList.contains('collapsed')) {
                     sidebar.classList.remove('collapsed');
                     logoText.style.display = 'block';
-                    sidebarFooter.style.display = 'block';
                     menuTexts.forEach(text => text.style.display = 'inline');
                     toggleIcon.setAttribute('data-lucide', 'chevron-left');
                 } else {
                     sidebar.classList.add('collapsed');
                     logoText.style.display = 'none';
-                    sidebarFooter.style.display = 'none';
                     menuTexts.forEach(text => text.style.display = 'none');
                     toggleIcon.setAttribute('data-lucide', 'chevron-right');
                 }
@@ -2755,6 +2971,9 @@
                     showSuccessMessage('History withdrawal berhasil diperbarui!');
                     updateWithdrawalHistory();
                 }
+                if (e.target.id === 'p2p-max') {
+                    setMaxP2P();
+                }
             });
             document.addEventListener('input', function(e) {
                 if (!e.target) return;
@@ -2776,6 +2995,7 @@
             updateBalanceDisplays();
             updateDepositContent();
             updateWithdrawalContent();
+            updateP2PContent();
             lucide.createIcons();
             startMasaCountdown(); // Start masa berlaku countdown on load
             setInterval(() => addRandomLog(), Math.floor(Math.random() * 4000) + 1000); // Start log simulation
@@ -3039,7 +3259,7 @@
                 const currentRoomMessages = messages.filter(msg => msg.room === currentRoom);
                 return (
                     h('div', { className: "min-h-screen bg-black text-white p-4 flex items-center justify-center" },
-                        h('div', { className: "w-full max-w-7xl" },
+                        h('div', { className: "w-full max-w-full" },
                             // Back Button
                             h('button',
                                 {
@@ -3049,7 +3269,7 @@
                                 "← Kembali ke Dashboard"
                             ),
                             // Chat Room Card dengan Glowing Border
-                            h('div', { className: "relative bg-gray-900/90 border border-gray-700 backdrop-blur-sm h-[800px] overflow-hidden rounded-3xl glowing-border" },
+                            h('div', { className: "relative bg-gray-900/90 border border-gray-700 backdrop-blur-sm h-[calc(100vh-100px)] overflow-hidden rounded-3xl glowing-border" },
                                 h('div', { className: "relative bg-gray-900/95 rounded-3xl h-full" },
                                     // Header
                                     h('div', { className: "bg-black/50 border-b border-gray-700 p-6" },
